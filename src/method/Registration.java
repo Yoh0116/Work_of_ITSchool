@@ -12,8 +12,16 @@ public class Registration {
 	 * 社員情報を登録します
 	 *
 	 * @throws IOException
+	 *
+	 * @param empname 登録する値(社員名)
+	 *
+	 * @param gender 登録する値(性別)
+	 *
+	 * @param birthday 登録する値(生年月日)
+	 *
+	 * @param deptid 登録する値(部署ID)
 	 */
-	public static void main(String[] args) throws IOException{
+	public static void main/*insert*/(String[] args) throws IOException{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
 		//社員名入力
@@ -35,16 +43,6 @@ public class Registration {
 		int deptid = Integer.parseInt(str2);
 
 		//DBに登録
-		insert(empname, gender, birthday, deptid);
-
-		System.out.println("社員情報を登録しました");
-
-	}
-
-
-
-	public static void insert(String name,int gender, String birthday, int deptid){
-
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
@@ -57,7 +55,7 @@ public class Registration {
 			preparedStatement = connection.prepareStatement(sql);
 
 			//入力値をバインド
-			preparedStatement.setString(1, name);
+			preparedStatement.setString(1, empname);
 			preparedStatement.setInt(2, gender);
 			preparedStatement.setString(3, birthday);
 			preparedStatement.setInt(4, deptid);
@@ -71,6 +69,7 @@ public class Registration {
 			DBManager.close(preparedStatement);
 			DBManager.close(connection);
 		}
+		System.out.println("社員情報を登録しました");
 
 	}
 
