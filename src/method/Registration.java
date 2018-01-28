@@ -42,7 +42,7 @@ public class Registration {
 		String str2 = br.readLine();
 		int deptid = Integer.parseInt(str2);
 
-		//DBに登録
+
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
